@@ -1,0 +1,27 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.cluster import DBSCAN
+from sklearn.preprocessing import StandardScaler
+
+# Load your dataset
+data = pd.read_csv('Mall_Customers.csv')  # Adjust the file path to your dataset
+
+# Select the features for clustering (Annual Income and Spending Score)
+X = data[['Annual Income (k$)', 'Spending Score (1-100)']]
+
+# Standardize the data (mean=0, std=1) to ensure features are on the same scale
+scaler = StandardScaler()
+X_scaled = scaler.fit_transform(X)
+
+# Apply DBSCAN clustering
+dbscan = DBSCAN(eps=0.3, min_samples=5)  # You may need to adjust 'eps' and 'min_samples' based on your data
+labels = dbscan.fit_predict(X_scaled)
+
+# Plot the clusters
+plt.figure(figsize=(8, 6))
+plt.scatter(X['Annual Income (k$)'], X['Spending Score (1-100)'], c=labels, cmap='viridis')
+plt.title('DBSCAN Clustering')
+plt.xlabel('Annual Income (k$)')
+plt.ylabel('Spending Score (1-100)')
+plt.show()
