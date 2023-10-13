@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 from sklearn.cluster import KMeans
 
 # Load your dataset
-data = pd.read_csv('Mall_Customer.csv')  # Adjust the file path to your dataset
+data = pd.read_csv('Mall_Customers.csv')  # Adjust the file path to your dataset
 
 # Select the features for clustering (Annual Income and Spending Score)
 X = data[['Annual Income (k$)', 'Spending Score (1-100)']
